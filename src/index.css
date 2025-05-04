@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+@layer base {
+  body {
+    @apply bg-background text-neutral-100 font-sans overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold leading-snug;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-semibold leading-snug;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4 md:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-md font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-neon-green text-background font-semibold hover:bg-opacity-90 hover:shadow-neon-green;
+  }
+
+  .btn-secondary {
+    @apply bg-neon-pink text-white font-semibold hover:bg-opacity-90 hover:shadow-neon-pink;
+  }
+
+  .btn-outline {
+    @apply border-2 border-neon-green text-neon-green hover:bg-neon-green hover:bg-opacity-10 hover:shadow-neon-green;
+  }
+
+  .neon-border {
+    @apply relative;
+  }
+
+  .neon-border::after {
+    @apply content-[''] absolute inset-0 border-2 rounded-md -z-10 opacity-70;
+  }
+
+  .neon-border-green::after {
+    @apply border-neon-green shadow-neon-green;
+  }
+
+  .neon-border-pink::after {
+    @apply border-neon-pink shadow-neon-pink;
+  }
+
+  /* Custom cursor */
+  .custom-cursor {
+    @apply fixed w-8 h-8 rounded-full border-2 border-neon-green pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 mix-blend-difference;
+  }
+
+  .glow-text-green {
+    @apply text-neon-green;
+    text-shadow: 0 0 10px rgba(0, 255, 148, 0.7);
+  }
+
+  .glow-text-pink {
+    @apply text-neon-pink;
+    text-shadow: 0 0 10px rgba(255, 0, 245, 0.7);
+  }
+  
+  .input-field {
+    @apply w-full bg-background-lighter border-2 border-neutral-700 rounded-md px-4 py-3 text-white focus:border-neon-green focus:shadow-neon-green transition-all duration-300 outline-none;
+  }
+}
