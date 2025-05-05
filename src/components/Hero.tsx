@@ -114,9 +114,9 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <h1 className="mb-6">
+          <h1 className="mb-4 sm:mb-5 md:mb-6">
             <motion.span 
-              className="block"
+              className="block text-lg sm:text-xl md:text-2xl text-neutral-300"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -125,7 +125,7 @@ const Hero: React.FC = () => {
             </motion.span>
             
             <motion.span 
-              className="glow-text-green"
+              className="glow-text-green text-2xl sm:text-3xl md:text-4xl lg:text-5xl block mt-2"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -135,17 +135,16 @@ const Hero: React.FC = () => {
           </h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-neutral-300 mb-10"
+            className="text-sm sm:text-base md:text-lg text-neutral-300 mb-6 sm:mb-8 md:mb-10 max-w-xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            I’m on a journey growing into design, data, & dev  — building skills to create smarter, meaningful digital experiences.
-
+            I'm on a journey growing into design, data, & dev — building skills to create smarter, meaningful digital experiences.
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row justify-center gap-4 mb-16"
+            className="flex flex-row justify-center gap-3 sm:gap-4 mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.5 }}
@@ -175,8 +174,8 @@ const Hero: React.FC = () => {
         </motion.div>
         
         <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: -10 }}
+          className="absolute bottom-8 left-0 right-0 mx-auto flex justify-center w-full"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
             delay: 1.2, 
@@ -194,8 +193,8 @@ const Hero: React.FC = () => {
             duration={500}
             className="text-white flex flex-col items-center cursor-pointer"
           >
-            <span className="text-sm mb-2">Scroll Down</span>
-            <ArrowDown className="h-5 w-5 animate-bounce" />
+            <span className="text-sm sm:text-sm md:text-base mb-2">Scroll Down</span>
+            <ArrowDown className="h-4 w-4 sm:h-5 sm:w-5 animate-bounce" />
           </Link>
         </motion.div>
       </div>

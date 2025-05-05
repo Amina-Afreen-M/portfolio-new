@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FileText, ChevronRight, ChevronLeft, Users, Lightbulb, LayoutGrid } from 'lucide-react';
@@ -17,6 +17,18 @@ const CaseStudies: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1
   });
+  
+  // Create a ref for the carousel container
+  const carouselRef = useRef<HTMLDivElement>(null);
+  
+  const [expandedSolutions, setExpandedSolutions] = useState<Record<number, boolean>>({});
+  
+  const toggleSolution = (id: number) => {
+    setExpandedSolutions(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   const caseStudies: CaseStudy[] = [
     {
@@ -41,7 +53,7 @@ const CaseStudies: React.FC = () => {
       context: "Users faced drop-offs and task failures during the shopping journey due to inconsistent UI patterns, inefficient task flows, and limited personalization.",
       problem: "Poor information architecture, redundant sign-up flows, and unscalable product layouts disrupted the shopping user journey, causing low engagement and conversion.",
       solution: "Redesigned core user flows with simplified navigation, personalized recommendations, and streamlined checkout process. Implemented consistent design patterns, improved information hierarchy, and enhanced product discovery features. The redesign resulted in a 35% increase in user engagement and a 22% improvement in conversion rates.",
-      image: "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0001.jpg"
+      image: "/src/assets/projects/E-commerce Web Design/1.jpg"
     }
   ];
 
@@ -79,22 +91,28 @@ const CaseStudies: React.FC = () => {
         {/* Horizontally scrollable carousel */}
         <div className="relative">
           <motion.div
-            ref={ref}
+            ref={(el) => {
+              // @ts-ignore - This is a valid assignment
+              carouselRef.current = el;
+              ref(el);
+            }}
             variants={containerVariants}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
-            className="flex overflow-x-auto hide-scrollbar pb-8 snap-x snap-mandatory"
+            className="flex overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar"
             style={{ scrollbarWidth: 'none' }}
           >
             {caseStudies.map((study) => (
               <motion.div 
                 key={study.id}
                 variants={itemVariants}
-                className="flex-shrink-0 w-full snap-center mx-4 first:ml-0 last:mr-0"
+                // Make card slightly narrower on smallest screens, full width on sm and up
+                className="flex-shrink-0 w-[90%] sm:w-full snap-center mx-2 sm:mx-4 first:ml-0 last:mr-0"
               >
                 <div className="bg-background-lighter rounded-lg overflow-hidden shadow-lg h-full border border-neutral-800 hover:border-neon-pink transition-colors duration-300">
                   <div className="grid grid-cols-1 lg:grid-cols-3 h-full">
-                    <div className="relative h-96 lg:h-auto overflow-hidden lg:col-span-1">
+                    {/* Adjust image height for different screen sizes */}
+                    <div className="relative h-64 sm:h-80 lg:h-auto overflow-hidden lg:col-span-1">
                       <img 
                         src={study.image} 
                         alt={study.title} 
@@ -103,41 +121,64 @@ const CaseStudies: React.FC = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-background-lighter via-transparent to-transparent opacity-70"></div>
                     </div>
                     
-                    <div className="p-6 lg:p-8 flex flex-col lg:col-span-2">
-                      <div className="flex items-center mb-4">
-                        <FileText className="h-5 w-5 text-neon-pink mr-2" />
-                        <h4 className="text-xl font-semibold">{study.title}</h4>
+                    {/* Adjust padding for different screen sizes */}
+                    <div className="p-4 sm:p-6 lg:p-8 flex flex-col lg:col-span-2">
+                      <div className="flex items-center mb-3 sm:mb-4">
+                        <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-neon-pink mr-2" />
+                        {/* Adjust title font size */}
+                        <h4 className="text-lg sm:text-xl font-semibold">{study.title}</h4>
                       </div>
                       
-                      <div className="space-y-4 flex-grow">
+                      <div className="space-y-3 sm:space-y-4 flex-grow">
                         <div>
-                          <h5 className="text-lg font-semibold mb-2 flex items-center">
+                          {/* Adjust heading font size */}
+                          <h5 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2 flex items-center">
                             <div className="p-1 mr-2 bg-background-lighter rounded-full border-2 border-neon-pink shadow-neon-pink inline-flex">
-                              <Users className="h-4 w-4 text-neon-pink" />
+                              <Users className="h-3 w-3 sm:h-4 sm:w-4 text-neon-pink" />
                             </div>
                             Context
                           </h5>
-                          <p className="text-neutral-300 text-sm">{study.context}</p>
+                          {/* Adjust paragraph font size */}
+                          <p className="text-neutral-300 text-xs sm:text-sm">{study.context}</p>
                         </div>
                         
                         <div>
-                          <h5 className="text-lg font-semibold mb-2 flex items-center">
+                          {/* Adjust heading font size */}
+                          <h5 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2 flex items-center">
                             <div className="p-1 mr-2 bg-background-lighter rounded-full border-2 border-neon-pink shadow-neon-pink inline-flex">
-                              <Lightbulb className="h-4 w-4 text-neon-pink" />
+                              <Lightbulb className="h-3 w-3 sm:h-4 sm:w-4 text-neon-pink" />
                             </div>
                             Problem
                           </h5>
-                          <p className="text-neutral-300 text-sm">{study.problem}</p>
+                          {/* Adjust paragraph font size */}
+                          <p className="text-neutral-300 text-xs sm:text-sm">{study.problem}</p>
                         </div>
                         
                         <div>
-                          <h5 className="text-lg font-semibold mb-2 flex items-center">
+                          {/* Adjust heading font size */}
+                          <h5 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2 flex items-center">
                             <div className="p-1 mr-2 bg-background-lighter rounded-full border-2 border-neon-green shadow-neon-green inline-flex">
-                              <LayoutGrid className="h-4 w-4 text-neon-green" />
+                              <LayoutGrid className="h-3 w-3 sm:h-4 sm:w-4 text-neon-green" />
                             </div>
                             UX Case Study Solution
                           </h5>
-                          <p className="text-neutral-300 text-sm">{study.solution}</p>
+                          {study.solution.length > 150 ? (
+                            <div>
+                              {/* Adjust paragraph font size */}
+                              <p className="text-neutral-300 text-xs sm:text-sm">
+                                {expandedSolutions[study.id] ? study.solution : `${study.solution.substring(0, 150)}...`}
+                              </p>
+                              <button 
+                                onClick={() => toggleSolution(study.id)}
+                                className="text-neon-green text-xs mt-2 hover:underline focus:outline-none"
+                              >
+                                {expandedSolutions[study.id] ? 'View Less' : 'View More'}
+                              </button>
+                            </div>
+                          ) : (
+                            /* Adjust paragraph font size */
+                            <p className="text-neutral-300 text-xs sm:text-sm">{study.solution}</p>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -147,40 +188,52 @@ const CaseStudies: React.FC = () => {
             ))}
           </motion.div>
           
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - Positioned relative to the Case Studies section */}
           <button
             onClick={() => {
-              const container = document.querySelector('.snap-x');
-              if (container) {
-                container.scrollBy({ left: -container.clientWidth, behavior: 'smooth' });
+              if (carouselRef.current) {
+                const scrollAmount = window.innerWidth <= 640 ? carouselRef.current.clientWidth * 0.8 : carouselRef.current.clientWidth;
+                carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
               }
             }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-background bg-opacity-70 p-3 rounded-full text-white hover:bg-neon-pink hover:bg-opacity-80 transition-colors z-10"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 sm:p-3 rounded-full text-white hover:text-neon-pink border border-neutral-700 transition-all duration-300 shadow-lg hover:bg-background/90 z-10"
             aria-label="Previous case study"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
           <button
             onClick={() => {
-              const container = document.querySelector('.snap-x');
-              if (container) {
-                container.scrollBy({ left: container.clientWidth, behavior: 'smooth' });
+              if (carouselRef.current) {
+                const scrollAmount = window.innerWidth <= 640 ? carouselRef.current.clientWidth * 0.8 : carouselRef.current.clientWidth;
+                carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
               }
             }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-background bg-opacity-70 p-3 rounded-full text-white hover:bg-neon-pink hover:bg-opacity-80 transition-colors z-10"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 sm:p-3 rounded-full text-white hover:text-neon-pink border border-neutral-700 transition-all duration-300 shadow-lg hover:bg-background/90 z-10"
             aria-label="Next case study"
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
           
           {/* Scroll indicators */}
           <div className="flex justify-center mt-6 space-x-2">
-            {caseStudies.map((_, index) => (
-              <div 
-                key={index} 
-                className={`h-2 rounded-full transition-all duration-300 ${index === 0 ? 'w-8 bg-neon-pink' : 'w-2 bg-neutral-700'}`}
-              ></div>
-            ))}
+            {caseStudies.map((_, index) => {
+              // Determine which card is most in view
+              let active = false;
+              if (carouselRef.current) {
+                const scrollLeft = carouselRef.current.scrollLeft;
+                const cardWidth = carouselRef.current.scrollWidth / caseStudies.length;
+                const activeIndex = Math.round(scrollLeft / cardWidth);
+                active = index === activeIndex;
+              } else {
+                active = index === 0;
+              }
+              return (
+                <div
+                  key={index}
+                  className={`h-2 rounded-full transition-all duration-300 ${active ? 'w-8 bg-neon-pink' : 'w-2 bg-neutral-700'}`}
+                ></div>
+              );
+            })}
           </div>
         </div>
       </div>

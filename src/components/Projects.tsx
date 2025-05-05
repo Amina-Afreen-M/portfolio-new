@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Layers, Layout, Code, Database } from 'lucide-react';
@@ -25,7 +25,11 @@ const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('data');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+  const [visibleProjects, setVisibleProjects] = useState(2);
+
+  // Define projects array first
   const projects: Project[] = [
     // UX Projects
     {
@@ -37,17 +41,17 @@ const Projects: React.FC = () => {
       tools: ["Figma", "Web Design", "User-Centered Design"],
       folder: "E-commerce Web Design",
       images: [
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0001.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0003.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0004.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0005.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0006.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0007.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0008.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0009.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0010.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0013.jpg",
-        "/src/assets/projects/E-commerce Web Design/E-commerce web_page-0014.jpg"
+        "/src/assets/projects/E-commerce Web Design/1.jpg",
+        "/src/assets/projects/E-commerce Web Design/3.jpg",
+        "/src/assets/projects/E-commerce Web Design/4.jpg",
+        "/src/assets/projects/E-commerce Web Design/5.jpg",
+        "/src/assets/projects/E-commerce Web Design/6.jpg",
+        "/src/assets/projects/E-commerce Web Design/7.jpg",
+        "/src/assets/projects/E-commerce Web Design/8.jpg",
+        "/src/assets/projects/E-commerce Web Design/9.jpg",
+        "/src/assets/projects/E-commerce Web Design/10.jpg",
+        "/src/assets/projects/E-commerce Web Design/products page.jpg",
+        "/src/assets/projects/E-commerce Web Design/products page-1.jpg"
       ]
     },
     {
@@ -91,7 +95,7 @@ const Projects: React.FC = () => {
       id: 4,
       title: "Language Learning App",
       category: "ux",
-      description: "An innovative language learning application designed to make language acquisition engaging and effective. Features include interactive lessons, real-time pronunciation feedback, personalized learning paths, and social learning components.",
+      description: "An innovative language learning application designed to make language acquisition engaging and effective.",
       thumbnail: "https://images.unsplash.com/photo-1489945052260-4f21c52268b9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fGxhbmd1YWdlJTIwbGVhcm5pbmd8ZW58MHwwfDB8fHww",
       tools: ["Figma", "User Research", "Interaction Design", "Prototyping"],
       folder: "Language Learning App",
@@ -152,44 +156,25 @@ const Projects: React.FC = () => {
       images: [
         "/src/assets/projects/Charity App/img4.jpg",
         "/src/assets/projects/Charity App/img7.jpg",
-        "/src/assets/projects/Charity App/img10.jpg",
-        "/src/assets/projects/Charity App/img13.jpg",
-        "/src/assets/projects/Charity App/img16.jpg",
-        "/src/assets/projects/Charity App/img22.jpg",
-        "/src/assets/projects/Charity App/img25.jpg",
-        "/src/assets/projects/Charity App/img28.jpg",
-        "/src/assets/projects/Charity App/img31.jpg",
-        "/src/assets/projects/Charity App/img34.jpg",
-        "/src/assets/projects/Charity App/img37.jpg",
-        "/src/assets/projects/Charity App/img40.jpg",
-        "/src/assets/projects/Charity App/img43.jpg",
-        "/src/assets/projects/Charity App/img46.jpg",
-        "/src/assets/projects/Charity App/img49.jpg",
-        "/src/assets/projects/Charity App/img52.jpg",
-        "/src/assets/projects/Charity App/img55.jpg",
-        "/src/assets/projects/Charity App/img58.jpg",
-        "/src/assets/projects/Charity App/img61.jpg",
-        "/src/assets/projects/Charity App/img64.jpg",
-        "/src/assets/projects/Charity App/img69.jpg",
-        "/src/assets/projects/Charity App/img72.jpg"
+        "/src/assets/projects/Charity App/img10.jpg"
       ]
     },
     
     // Backend Projects
     {
-      id: 7,
+      id: 8,
       title: "SchedulEase – Smart Task Manager",
       category: "backend",
-      description: "SchedulEase is a smart task management system designed to help users prioritize, schedule, and manage tasks efficiently. With features like auto-scheduling, prioritization, and daily summaries, SchedulEase optimizes productivity by ensuring that the most critical tasks are completed first.",
+      description: "SchedulEase is a smart task management system designed to help users prioritize and manage tasks efficiently.",
       thumbnail: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGFza3xlbnwwfDB8MHx8fDA%3D",
       tools: ["Java", "Spring Boot", "MySQL"],
       githubLink: "https://github.com/Amina-Afreen-M/SchedulEase-Task-manager"
     },
     {
-      id: 8,
+      id: 9,
       title: "Employee Management System (EMS)",
       category: "backend",
-      description: "A full-stack Employee Management System built with Spring Boot and React, featuring role-based access control, employee management, department organization, leave tracking, and timesheet management.",
+      description: "A full-stack Employee Management System built with Spring Boot and React, featuring role-based access control.",
       thumbnail: "https://images.unsplash.com/photo-1700241956197-0b13f96fd69e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzQzfHxlbXBsb3llZSUyMG1hbmFnZW1lbnR8ZW58MHwwfDB8fHww",
       tools: ["Spring Boot", "React", "MySQL"],
       githubLink: "https://github.com/Amina-Afreen-M/Employee-Management-System-EMS"
@@ -197,49 +182,95 @@ const Projects: React.FC = () => {
     
     // Data Projects
     {
-      id: 9,
+      id: 10,
       title: "Weather Data Analysis",
       category: "data",
-      description: "This project is a beginner-friendly Exploratory Data Analysis (EDA) of historical weather data using Python. The goal was to clean and understand the dataset, perform statistical analysis, and answer specific weather-related queries without any data visualization.",
+      description: "A beginner-friendly Exploratory Data Analysis (EDA) of historical weather data using Python.",
       thumbnail: "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tools: ["Python", "Pandas", "NumPy"],
       githubLink: "https://github.com/Amina-Afreen-M/Data-Analysis"
     },
     {
-      id: 10,
-      title: "Air Quality Analysis and Forecasting Dashboard",
+      id: 11,
+      title: "Air Quality Analysis Dashboard",
       category: "data",
-      description: "This project implements a comprehensive air quality analysis and forecasting system using time series methodologies. It provides an interactive dashboard for visualizing air quality data, analyzing temporal patterns, and generating forecasts using different models.",
+      description: "A comprehensive air quality analysis and forecasting system using time series methodologies.",
       thumbnail: "https://plus.unsplash.com/premium_photo-1673240845240-2fce9077a6e9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFpciUyMHF1YWxpdHl8ZW58MHwwfDB8fHww",
       tools: ["Python", "Pandas", "Scikit-learn", "Plotly"],
       githubLink: "https://github.com/Amina-Afreen-M/Time-Series-Analysis-AirQuality"
     },
     {
-      id: 11,
+      id: 12,
       title: "COPD Patient Management App",
       category: "ux",
-      description: "A comprehensive healthcare application designed specifically for COPD patients to monitor and manage their condition. Features include symptom tracking, medication reminders, breathing exercise guides, environmental alerts, and direct communication with healthcare providers.",
+      description: "A healthcare application designed specifically for COPD patients to monitor and manage their condition.",
       thumbnail: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
       tools: ["Figma", "Healthcare UX", "Accessibility Design", "User Research"],
       folder: "COPD Management App",
       images: [
         "/src/assets/projects/Medical App/Android Large - 2.png",
         "/src/assets/projects/Medical App/Android Large - 3.png",
-        "/src/assets/projects/Medical App/Android Large - 4.png",
-        "/src/assets/projects/Medical App/Android Large - 5.png",
-        "/src/assets/projects/Medical App/Android Large - 6.png",
-        "/src/assets/projects/Medical App/Android Large - 7.png",
-        "/src/assets/projects/Medical App/Android Large - 12.png",
-        "/src/assets/projects/Medical App/Android Large - 15.png",
-        "/src/assets/projects/Medical App/Android Large - 16.png",
-        "/src/assets/projects/Medical App/Home Screen.png",
-        "/src/assets/projects/Medical App/Home page of medicines.png",
-        "/src/assets/projects/Medical App/settings.png"
+        "/src/assets/projects/Medical App/Android Large - 4.png"
       ]
     }
   ];
 
+  // Define filteredProjects before any useEffect hooks that use it
   const filteredProjects = projects.filter(project => project.category === activeFilter);
+  
+  // Update visible projects count based on screen width
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1536) {
+        setVisibleProjects(3);
+      } else if (window.innerWidth >= 1024) {
+        setVisibleProjects(2);
+      } else if (window.innerWidth >= 768) {
+        setVisibleProjects(2);
+      } else {
+        setVisibleProjects(1);
+      }
+    };
+
+    handleResize(); // Initial call
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  // Check if scrolling is needed
+  const [isScrollable, setIsScrollable] = useState(false);
+  
+  useEffect(() => {
+    const checkScrollable = () => {
+      if (scrollContainerRef.current) {
+        const container = scrollContainerRef.current;
+        setIsScrollable(container.scrollWidth > container.clientWidth);
+      }
+    };
+    
+    checkScrollable();
+    // Add resize event listener to recheck when window size changes
+    window.addEventListener('resize', checkScrollable);
+    return () => window.removeEventListener('resize', checkScrollable);
+  }, [filteredProjects, visibleProjects]);
+
+  const handleScroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const cardWidth = container.clientWidth / visibleProjects;
+      const scrollAmount = cardWidth;
+      
+      const newPosition = direction === 'left' 
+        ? Math.max(0, scrollPosition - scrollAmount)
+        : Math.min(container.scrollWidth - container.clientWidth, scrollPosition + scrollAmount);
+      
+      container.scrollTo({
+        left: newPosition,
+        behavior: 'smooth'
+      });
+      setScrollPosition(newPosition);
+    }
+  };
   
   // Function to open the modal with the selected project
   const openProjectModal = (project: Project) => {
@@ -272,138 +303,198 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="section">
-      <div className="container">
+    <section id="projects" className="section py-16">
+      <div className="container mx-auto px-4">
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="mb-4">My <span className="glow-text-green">Projects</span></h2>
+          <h2 className="text-3xl font-bold mb-4">Featured <span className="glow-text-green">Projects</span></h2>
           <p className="text-neutral-300 max-w-2xl mx-auto">
-            Explore my latest design work across various platforms and industries.
-            Each project represents a unique challenge and solution.
+            A collection of my work showcasing my skills in data analysis, backend development, and UX design.
           </p>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
-        >
-          <button 
-            onClick={() => setActiveFilter('data')}
-            className={`px-6 py-2 rounded-full transition-all duration-300 flex items-center ${
-              activeFilter === 'data' 
-                ? 'bg-neon-green text-background font-semibold' 
-                : 'bg-background-lighter text-neutral-300 hover:text-white'
-            }`}
-          >
-            <Database className="h-4 w-4 mr-2" />
-            Data Projects
-          </button>
-          <button 
-            onClick={() => setActiveFilter('backend')}
-            className={`px-6 py-2 rounded-full transition-all duration-300 flex items-center ${
-              activeFilter === 'backend' 
-                ? 'bg-neon-green text-background font-semibold' 
-                : 'bg-background-lighter text-neutral-300 hover:text-white'
-            }`}
-          >
-            <Code className="h-4 w-4 mr-2" />
-            Backend Projects
-          </button>
-          <button 
-            onClick={() => setActiveFilter('ux')}
-            className={`px-6 py-2 rounded-full transition-all duration-300 flex items-center ${
-              activeFilter === 'ux' 
-                ? 'bg-neon-green text-background font-semibold' 
-                : 'bg-background-lighter text-neutral-300 hover:text-white'
-            }`}
-          >
-            <Layout className="h-4 w-4 mr-2" />
-            UX Projects
-          </button>
-        </motion.div>
-
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {filteredProjects.map((project) => (
-            <motion.div 
-              key={project.id}
-              variants={itemVariants}
-              className="bg-background-lighter rounded-lg overflow-hidden group relative flex flex-col h-full"
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+        <div className="flex justify-center mb-8 sm:mb-12">
+          <div className="flex gap-1.5 sm:gap-4 overflow-x-auto hide-scrollbar">
+            <button 
+              onClick={() => setActiveFilter('data')}
+              className={`px-3 sm:px-6 py-1.5 sm:py-2 rounded-full transition-all duration-300 flex items-center text-xs sm:text-sm ${
+                activeFilter === 'data' 
+                  ? 'bg-neon-green text-background font-semibold' 
+                  : 'bg-background-lighter text-neutral-300 hover:text-white'
+              }`}
             >
-              <div className="relative h-60 overflow-hidden">
-                <img 
-                  src={project.thumbnail} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background-lighter via-transparent to-transparent opacity-60"></div>
-              </div>
+              <Database className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              Data Projects
+            </button>
+            <button 
+              onClick={() => setActiveFilter('backend')}
+              className={`px-3 sm:px-6 py-1.5 sm:py-2 rounded-full transition-all duration-300 flex items-center text-xs sm:text-sm ${
+                activeFilter === 'backend' 
+                  ? 'bg-neon-green text-background font-semibold' 
+                  : 'bg-background-lighter text-neutral-300 hover:text-white'
+              }`}
+            >
+              <Code className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              Backend Projects
+            </button>
+            <button 
+              onClick={() => setActiveFilter('ux')}
+              className={`px-3 sm:px-6 py-1.5 sm:py-2 rounded-full transition-all duration-300 flex items-center text-xs sm:text-sm ${
+                activeFilter === 'ux' 
+                  ? 'bg-neon-green text-background font-semibold' 
+                  : 'bg-background-lighter text-neutral-300 hover:text-white'
+              }`}
+            >
+              <Layout className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              UX Projects
+            </button>
+          </div>
+        </div>
+
+        <div className="relative">
+          {isScrollable && (
+            <>
+              <button 
+                onClick={() => handleScroll('left')} 
+                className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 p-3 bg-background/40 backdrop-blur-sm rounded-full text-white hover:text-neon-green transition-all duration-300 shadow-lg hover:bg-background/60 ${scrollPosition <= 0 ? 'opacity-50 cursor-not-allowed' : 'opacity-80 hover:opacity-100'}`}
+                disabled={scrollPosition <= 0}
+                aria-label="Scroll left"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
               
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex-grow">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-neutral-400 mb-4">{project.description}</p>
+              <button 
+                onClick={() => handleScroll('right')} 
+                className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 p-3 bg-background/40 backdrop-blur-sm rounded-full text-white hover:text-neon-green transition-all duration-300 shadow-lg hover:bg-background/60 opacity-80 hover:opacity-100`}
+                aria-label="Scroll right"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </>
+          )}
+          
+          <motion.div
+            ref={ref}
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            className="relative overflow-hidden"
+          >
+            <div 
+              ref={scrollContainerRef}
+              className="flex gap-3 sm:gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-6 relative"
+              onScroll={(e) => setScrollPosition(e.currentTarget.scrollLeft)}
+            >
+              {filteredProjects.map((project) => (
+                <motion.div 
+                  key={project.id}
+                  variants={itemVariants}
+                  className="bg-background-lighter rounded-lg overflow-hidden group relative flex flex-col snap-start h-full min-w-[220px] w-[75vw] sm:w-[45vw] md:w-[40vw] lg:w-[calc(100%/var(--visible-projects,1))] flex-shrink-0"
+                  style={{ '--visible-projects': visibleProjects } as React.CSSProperties}
+                  whileHover={{ y: -5, transition: { duration: 0.3 } }}
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={project.thumbnail} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background-lighter via-transparent to-transparent opacity-60"></div>
+                  </div>
                   
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tools.map((tool, index) => (
-                      <span 
-                        key={index}
-                        className="px-3 py-1 bg-background text-sm text-neutral-300 rounded-full"
-                      >
-                        {tool}
+                  <div className="p-3 sm:p-6 flex flex-col flex-grow">
+                    <div className="flex-grow">
+                      <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-1 sm:mb-2 line-clamp-1">{project.title}</h3>
+                      <p className="text-neutral-400 mb-2 sm:mb-4 line-clamp-2 text-xs sm:text-sm">{project.description}</p>
+                      
+                      <div className="flex flex-wrap gap-1 sm:gap-2 mb-2 sm:mb-4">
+                        {project.tools.slice(0, 3).map((tool, index) => (
+                          <span 
+                            key={index}
+                            className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-background text-[10px] sm:text-xs text-neutral-300 rounded-full"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                        {project.tools.length > 3 && 
+                          <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-background text-[10px] sm:text-xs text-neutral-300 rounded-full">
+                            +{project.tools.length - 3}
+                          </span>
+                        }
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center mt-2 sm:mt-4">
+                      <span className="text-[10px] sm:text-xs text-neutral-400 capitalize">
+                        {project.category === 'ux' ? 'UX Design' : 
+                         project.category === 'backend' ? 'Backend' : 'Data'}
                       </span>
-                    ))}
+                      <button 
+                        onClick={() => handleViewProject(project)}
+                        className="flex items-center text-neon-green hover:text-white transition-colors duration-300 text-[10px] sm:text-xs md:text-sm"
+                      >
+                        <span className="mr-1">View Project</span>
+                        <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex justify-between items-center mt-auto">
-                  <span className="text-sm text-neutral-400 capitalize">
-                    {project.category === 'ux' ? 'UX Design' : 
-                     project.category === 'backend' ? 'Backend' : 'Data'}
-                  </span>
-                  <button 
-                    onClick={() => handleViewProject(project)}
-                    className="flex items-center text-neon-green hover:text-white transition-colors duration-300"
-                  >
-                    <span className="mr-1">View Project</span>
-                    <ExternalLink className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-              
-              <div className="absolute top-4 left-4 bg-neon-pink text-white text-xs font-bold px-3 py-1 rounded-full shadow-neon-pink">
-                {project.category === 'ux' ? (
-                  <div className="flex items-center">
-                    <Layout className="h-3 w-3 mr-1" />
-                    <span>UX</span>
+                  
+                  <div className="absolute top-4 left-4 bg-neon-pink text-white text-xs font-bold px-3 py-1 rounded-full shadow-neon-pink">
+                    {project.category === 'ux' ? (
+                      <div className="flex items-center">
+                        <Layout className="h-3 w-3 mr-1" />
+                        <span>UX</span>
+                      </div>
+                    ) : project.category === 'backend' ? (
+                      <div className="flex items-center">
+                        <Code className="h-3 w-3 mr-1" />
+                        <span>Backend</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center">
+                        <Database className="h-3 w-3 mr-1" />
+                        <span>Data</span>
+                      </div>
+                    )}
                   </div>
-                ) : project.category === 'backend' ? (
-                  <div className="flex items-center">
-                    <Code className="h-3 w-3 mr-1" />
-                    <span>Backend</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center">
-                    <Database className="h-3 w-3 mr-1" />
-                    <span>Data</span>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+        
+        {/* Pagination indicators */}
+        <div className="flex justify-center mt-8">
+          {Array.from({ length: Math.ceil(filteredProjects.length / visibleProjects) }).map((_, index) => {
+            const startPosition = index * visibleProjects;
+            const isActive = scrollPosition >= startPosition * (scrollContainerRef.current?.clientWidth || 0) / filteredProjects.length * visibleProjects &&
+                          scrollPosition < (startPosition + visibleProjects) * (scrollContainerRef.current?.clientWidth || 0) / filteredProjects.length * visibleProjects;
+            
+            return (
+              <button
+                key={index}
+                className={`w-2 h-2 rounded-full mx-1 transition-all duration-300 ${
+                  isActive ? 'bg-neon-green w-6' : 'bg-neutral-600 hover:bg-neutral-400'
+                }`}
+                onClick={() => {
+                  if (scrollContainerRef.current) {
+                    const newPosition = (scrollContainerRef.current.scrollWidth / filteredProjects.length) * startPosition;
+                    scrollContainerRef.current.scrollTo({
+                      left: newPosition,
+                      behavior: 'smooth'
+                    });
+                    setScrollPosition(newPosition);
+                  }
+                }}
+                aria-label={`Page ${index + 1}`}
+              />
+            );
+          })}
+        </div>
       </div>
       
       {/* Project Modal */}

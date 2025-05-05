@@ -88,7 +88,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background bg-opacity-90 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-background bg-opacity-90 backdrop-blur-sm"
           onClick={onClose}
         >
           <motion.div
@@ -96,12 +96,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: 'spring', damping: 25 }}
-            className="relative bg-background-lighter w-full max-w-4xl rounded-lg shadow-lg overflow-hidden"
+            className="relative bg-background-lighter w-full max-w-4xl rounded-lg shadow-lg overflow-hidden max-h-[90vh] text-sm sm:text-base"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex justify-between items-center p-4 border-b border-neutral-800">
-              <h3 className="text-xl font-semibold">{projectTitle}</h3>
+            <div className="flex justify-between items-center p-3 sm:p-4 border-b border-neutral-800">
+              <h3 className="text-lg sm:text-xl font-semibold">{projectTitle}</h3>
               <button
                 onClick={onClose}
                 className="p-1 rounded-full hover:bg-neutral-800 transition-colors"
@@ -112,14 +112,14 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
             </div>
             
             {/* Project Description */}
-            <div className="p-4 border-b border-neutral-800">
+            <div className="p-3 sm:p-4 border-b border-neutral-800">
               <p className="text-neutral-300">{projectDescription}</p>
             </div>
             
             {/* Image Gallery */}
             <div className="relative">
               {/* Main Image Display */}
-              <div className="h-[70vh] flex items-center justify-center bg-background p-4">
+              <div className="h-[50vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center bg-background p-2 sm:p-4">
                 {projectImages.length > 0 && (
                   <img
                     src={projectImages[currentImageIndex]}
@@ -134,17 +134,17 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                 <>
                   <button
                     onClick={handlePrevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-background bg-opacity-70 p-2 rounded-full text-white"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-background bg-opacity-70 p-1 sm:p-2 rounded-full text-white"
                     aria-label="Previous image"
                   >
-                    <ChevronLeft className="h-6 w-6" />
+                    <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
                   </button>
                   <button
                     onClick={handleNextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-background bg-opacity-70 p-2 rounded-full text-white"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-background bg-opacity-70 p-1 sm:p-2 rounded-full text-white"
                     aria-label="Next image"
                   >
-                    <ChevronRight className="h-6 w-6" />
+                    <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
                   </button>
                 </>
               )}
@@ -152,13 +152,13 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
               {/* Thumbnail Navigation */}
               <div 
                 ref={scrollRef}
-                className="flex overflow-x-auto hide-scrollbar gap-2 p-4 bg-background-light"
+                className="flex overflow-x-auto hide-scrollbar gap-2 p-2 sm:p-4 bg-background-light"
               >
                 {projectImages.map((src, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`flex-shrink-0 h-20 w-auto rounded-md overflow-hidden transition-all ${currentImageIndex === index ? 'ring-2 ring-neon-green scale-105' : 'opacity-70 hover:opacity-100'}`}
+                    className={`flex-shrink-0 h-14 sm:h-20 w-auto rounded-md overflow-hidden transition-all ${currentImageIndex === index ? 'ring-2 ring-neon-green scale-105' : 'opacity-70 hover:opacity-100'}`}
                   >
                     <img
                       src={src}

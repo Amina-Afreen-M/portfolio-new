@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
   return (
     <header 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-background/90 backdrop-blur-sm py-3 shadow-lg' : 'bg-transparent py-5'
+        scrolled ? 'bg-background/90 backdrop-blur-sm py-2 sm:py-3 shadow-lg' : 'bg-transparent py-3 sm:py-5'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -47,8 +47,8 @@ const Navbar: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="flex items-center"
         >
-          <img src="/deltaVerse logo.jpg" alt="deltaVerse Logo" className="h-8 w-8 object-contain rounded-sm mr-2" />
-          <span className="text-xl font-heading font-bold text-white">
+          <img src="/deltaVerse logo.jpg" alt="deltaVerse Logo" className="h-6 w-6 sm:h-8 sm:w-8 object-contain rounded-sm mr-2" />
+          <span className="text-lg sm:text-xl font-heading font-bold text-white">
             delta<span className="glow-text-pink">V</span><span className="glow-text-green">erse</span>
           </span>
         </motion.div>
@@ -97,9 +97,9 @@ const Navbar: React.FC = () => {
         initial={false}
         animate={{ height: isMenuOpen ? 'auto' : 0, opacity: isMenuOpen ? 1 : 0 }}
         transition={{ duration: 0.3 }}
-        className={`md:hidden bg-background-lighter overflow-hidden`}
+        className={`md:hidden bg-background-lighter overflow-hidden mobile-navbar-half`}
       >
-        <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <div className="container mx-auto px-4 py-4 flex flex-col items-center space-y-3">
           {navLinks.map((link, index) => (
             <Link
               key={index}
@@ -109,7 +109,7 @@ const Navbar: React.FC = () => {
               offset={-70}
               duration={500}
               onClick={() => setIsMenuOpen(false)}
-              className="text-lg text-neutral-200 hover:text-neon-green cursor-pointer transition-colors duration-300 px-4 py-2 border-l-2 border-neon-green"
+              className="text-xs sm:text-base text-neutral-200 hover:text-neon-green cursor-pointer transition-colors duration-300 px-2 py-1 sm:px-3 sm:py-1.5 border-b border-neon-green w-full text-center"
             >
               {link.name}
             </Link>

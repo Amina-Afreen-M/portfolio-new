@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-const Contact: React.FC = () => {
+const Contact = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -23,24 +23,15 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState('idle');
 
-  useEffect(() => {
-    try {
-      emailjs.init(process.env.VITE_EMAILJS_PUBLIC_KEY || 'AJH9lTR28X2cI5Lre');
-    } catch (error) {
-      console.error('Failed to initialize EmailJS:', error);
-      setSubmitStatus('error');
-    }
-  }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
@@ -52,19 +43,34 @@ const Contact: React.FC = () => {
         throw new Error('Please enter a valid email address');
       }
 
-      // Send email using emailjs
-      await emailjs.send(
-        process.env.VITE_EMAILJS_SERVICE_ID || 'service_pczntgr',
-        process.env.VITE_EMAILJS_TEMPLATE_ID || 'template_cubxa37',
+      // Use hardcoded values for now to ensure it works
+      const serviceId = 'service_96vcwn1';
+      const templateId = 'template_2a9drb7';
+      const publicKey = 'AJH9lTR28X2cI5Lre'; 
+      
+      // Make sure EmailJS is initialized
+      if (!emailjs.init) {
+        emailjs.init(publicKey);
+      }
+      
+      console.log('Sending email with EmailJS...');
+      console.log('Service ID:', serviceId);
+      console.log('Template ID:', templateId);
+      
+      // Send the email directly with parameters instead of using form
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
         {
-          name: formData.name,
-          email: formData.email,
+          from_name: formData.name,
+          reply_to: formData.email,
           subject: formData.subject,
           message: formData.message
-        }
+        },
+        publicKey
       );
 
-      // Reset form
+      // Reset form on success
       setFormData({
         name: '',
         email: '',
@@ -76,8 +82,8 @@ const Contact: React.FC = () => {
       // Clear success message after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
-      setSubmitStatus('error');
       console.error('Form submission error:', error);
+      setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
@@ -99,21 +105,22 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="section bg-background-light relative">
+    <section id="contact" className="py-12 md:py-16 bg-background-light relative">
+      {/* Background effects */}
       <div className="absolute top-0 left-0 w-full h-40 pointer-events-none overflow-hidden">
-        <div className="w-96 h-96 rounded-full bg-neon-green opacity-10 blur-3xl absolute -top-64 -left-20"></div>
-        <div className="w-96 h-96 rounded-full bg-neon-pink opacity-10 blur-3xl absolute -top-64 -right-20"></div>
+        <div className="w-48 h-48 rounded-full bg-green-500 opacity-10 blur-3xl absolute -top-24 -left-12"></div>
+        <div className="w-48 h-48 rounded-full bg-pink-500 opacity-10 blur-3xl absolute -top-24 -right-12"></div>
       </div>
       
-      <div className="container relative z-10">
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <h2 className="mb-4">Get In <span className="glow-text-pink">Touch</span></h2>
-          <p className="text-neutral-300 max-w-2xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Get In <span className="text-green-400">Touch</span></h2>
+          <p className="text-neutral-300 max-w-2xl mx-auto text-sm md:text-base">
             Have a project in mind or want to collaborate? Feel free to reach out!
           </p>
         </motion.div>
@@ -123,70 +130,70 @@ const Contact: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
         >
-          <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-semibold mb-8">Contact Information</h3>
+          {/* Contact Info */}
+          <motion.div variants={itemVariants} className="bg-gray-900/50 p-6 rounded-lg">
+            <h3 className="text-lg md:text-xl font-semibold mb-4">Contact Information</h3>
             
-            <div className="space-y-6 mb-10">
+            <div className="space-y-3 mb-6">
               <div className="flex items-start">
-                <div className="p-3 bg-background rounded-full mr-4">
-                  <Mail className="h-5 w-5 text-neon-green" />
+                <div className="p-2 bg-gray-800 rounded-full mr-3">
+                  <Mail className="h-4 w-4 md:h-5 md:w-5 text-green-400" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium mb-1">Email</h4>
-                  <a href="mailto:aminafreenm20@gmail.com" className="text-neutral-300 hover:text-neon-green transition-colors duration-300">
+                  <h4 className="text-sm md:text-base font-medium mb-0.5">Email</h4>
+                  <a href="mailto:aminafreenm20@gmail.com" className="text-xs md:text-sm text-neutral-300 hover:text-green-400 transition-colors duration-300">
                     aminafreenm20@gmail.com
                   </a>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <div className="p-3 bg-background rounded-full mr-4">
-                  <MapPin className="h-5 w-5 text-neon-green" />
+                <div className="p-2 bg-gray-800 rounded-full mr-3">
+                  <MapPin className="h-4 w-4 md:h-5 md:w-5 text-green-400" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium mb-1">Location</h4>
-                  <p className="text-neutral-300">
+                  <h4 className="text-sm md:text-base font-medium mb-0.5">Location</h4>
+                  <p className="text-xs md:text-sm text-neutral-300">
                     Chennai, India
                   </p>
                 </div>
               </div>
             </div>
             
-            <div className="mb-10">
-              <h4 className="text-lg font-medium mb-4">Connect With Me</h4>
-              <div className="flex space-x-4">
+            <div>
+              <h4 className="text-sm md:text-base font-medium mb-2">Connect With Me</h4>
+              <div className="flex space-x-3">
                 <a 
                   href="https://www.linkedin.com/in/amina-afreen-m/" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-background rounded-full text-neutral-400 hover:text-neon-green hover:shadow-neon-green transition-all duration-300"
+                  className="p-2 bg-gray-800 rounded-full text-neutral-400 hover:text-green-400 transition-all duration-300"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="h-4 w-4 md:h-5 md:w-5" />
                 </a>
                 <a 
                   href="https://github.com/Amina-Afreen-M" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-background rounded-full text-neutral-400 hover:text-neon-green hover:shadow-neon-green transition-all duration-300"
+                  className="p-2 bg-gray-800 rounded-full text-neutral-400 hover:text-green-400 transition-all duration-300"
                   aria-label="Github"
                 >
-                  <Github className="h-5 w-5" />
+                  <Github className="h-4 w-4 md:h-5 md:w-5" />
                 </a>
               </div>
             </div>
-            
-           
           </motion.div>
           
-          <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-semibold mb-8">Send a Message</h3>
+          {/* Contact Form */}
+          <motion.div variants={itemVariants} className="bg-gray-900/50 p-6 rounded-lg">
+            <h3 className="text-lg md:text-xl font-semibold mb-4">Send a Message</h3>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-neutral-300 mb-2">
+                <label htmlFor="name" className="block text-xs font-medium text-neutral-300 mb-1">
                   Your Name
                 </label>
                 <input
@@ -196,13 +203,13 @@ const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="input-field"
+                  className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
                   placeholder="John Doe"
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-300 mb-2">
+                <label htmlFor="email" className="block text-xs font-medium text-neutral-300 mb-1">
                   Your Email
                 </label>
                 <input
@@ -212,13 +219,13 @@ const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="input-field"
+                  className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
                   placeholder="john@example.com"
                 />
               </div>
               
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-neutral-300 mb-2">
+                <label htmlFor="subject" className="block text-xs font-medium text-neutral-300 mb-1">
                   Subject
                 </label>
                 <input
@@ -228,13 +235,13 @@ const Contact: React.FC = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="input-field"
+                  className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
                   placeholder="Project Inquiry"
                 />
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-neutral-300 mb-2">
+                <label htmlFor="message" className="block text-xs font-medium text-neutral-300 mb-1">
                   Message
                 </label>
                 <textarea
@@ -243,8 +250,8 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
-                  className="input-field resize-none"
+                  rows={3}
+                  className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 resize-none"
                   placeholder="Hello, I'd like to discuss a project..."
                 ></textarea>
               </div>
@@ -252,20 +259,20 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`btn btn-primary w-full flex justify-center items-center ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md flex justify-center items-center transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
-                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                <span className="text-sm">{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                 <Send className={`h-4 w-4 ml-2 ${isSubmitting ? 'animate-pulse' : ''}`} />
               </button>
 
               {submitStatus === 'success' && (
-                <div className="mt-4 p-3 bg-green-500/20 border border-green-500/50 rounded-md text-green-400 text-sm">
-                  Message sent successfully! We'll get back to you soon.
+                <div className="mt-3 p-2 bg-green-500/20 border border-green-500/50 rounded-md text-green-400 text-xs">
+                  Message sent successfully! I'll get back to you soon.
                 </div>
               )}
 
               {submitStatus === 'error' && (
-                <div className="mt-4 p-3 bg-red-500/20 border border-red-500/50 rounded-md text-red-400 text-sm">
+                <div className="mt-3 p-2 bg-red-500/20 border border-red-500/50 rounded-md text-red-400 text-xs">
                   Failed to send message. Please try again later.
                 </div>
               )}
