@@ -41,7 +41,7 @@ const Projects: React.FC = () => {
       tools: ["Figma", "Web Design", "User-Centered Design"],
       folder: "E-commerce Web Design",
       images: [
-        "/assets/projects/E-commerce Web Design/1.jpg",
+        "/src/assets/projects/E-commerce Web Design/1.jpg",
         "/src/assets/projects/E-commerce Web Design/3.jpg",
         "/src/assets/projects/E-commerce Web Design/4.jpg",
         "/src/assets/projects/E-commerce Web Design/5.jpg",
