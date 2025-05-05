@@ -41,17 +41,17 @@ const Projects: React.FC = () => {
       tools: ["Figma", "Web Design", "User-Centered Design"],
       folder: "E-commerce Web Design",
       images: [
-        "/src/assets/projects/E-commerce Web Design/1.jpg",
-        "/src/assets/projects/E-commerce Web Design/3.jpg",
-        "/src/assets/projects/E-commerce Web Design/4.jpg",
-        "/src/assets/projects/E-commerce Web Design/5.jpg",
-        "/src/assets/projects/E-commerce Web Design/6.jpg",
-        "/src/assets/projects/E-commerce Web Design/7.jpg",
-        "/src/assets/projects/E-commerce Web Design/8.jpg",
-        "/src/assets/projects/E-commerce Web Design/9.jpg",
-        "/src/assets/projects/E-commerce Web Design/10.jpg",
-        "/src/assets/projects/E-commerce Web Design/Products page.jpg",
-        "/src/assets/projects/E-commerce Web Design/Products page-1.jpg"
+        "./projects/E-commerce Web Design/1.jpg",
+        "./projects/E-commerce Web Design/3.jpg",
+        "./projects/E-commerce Web Design/4.jpg",
+        "./projects/E-commerce Web Design/5.jpg",
+        "./projects/E-commerce Web Design/6.jpg",
+        "./projects/E-commerce Web Design/7.jpg",
+        "./projects/E-commerce Web Design/8.jpg",
+        "./projects/E-commerce Web Design/9.jpg",
+        "./projects/E-commerce Web Design/10.jpg",
+        "./projects/E-commerce Web Design/Products page.jpg",
+        "./projects/E-commerce Web Design/Products page-1.jpg"
       ]
     },
     {
@@ -63,13 +63,13 @@ const Projects: React.FC = () => {
       tools: ["Figma", "Concept Design", "Miro"],
       folder: "Ai Travel Planner",
       images: [
-        "/src/assets/projects/Ai Travel Planner/img4.jpg",
-        "/src/assets/projects/Ai Travel Planner/img7.jpg",
-        "/src/assets/projects/Ai Travel Planner/img10.jpg",
-        "/src/assets/projects/Ai Travel Planner/img13.jpg",
-        "/src/assets/projects/Ai Travel Planner/img16.jpg",
-        "/src/assets/projects/Ai Travel Planner/img19.jpg",
-        "/src/assets/projects/Ai Travel Planner/img22.jpg"
+        "./projects/Ai Travel Planner/img4.jpg",
+        "./projects/Ai Travel Planner/img7.jpg",
+        "./projects/Ai Travel Planner/img10.jpg",
+        "./projects/Ai Travel Planner/img13.jpg",
+        "./projects/Ai Travel Planner/img16.jpg",
+        "./projects/Ai Travel Planner/img19.jpg",
+        "./projects/Ai Travel Planner/img22.jpg"
       ]
     },
     {
@@ -81,14 +81,14 @@ const Projects: React.FC = () => {
       tools: ["Figma", "Web Design", "Material UI"],
       folder: "Internal Attendance Web-app",
       images: [
-        "/src/assets/projects/Internal Attendance Web-app/img4.jpg",
-        "/src/assets/projects/Internal Attendance Web-app/img7.jpg",
-        "/src/assets/projects/Internal Attendance Web-app/img10.jpg",
-        "/src/assets/projects/Internal Attendance Web-app/img13.jpg",
-        "/src/assets/projects/Internal Attendance Web-app/img16.jpg",
-        "/src/assets/projects/Internal Attendance Web-app/img19.jpg",
-        "/src/assets/projects/Internal Attendance Web-app/img22.jpg",
-        "/src/assets/projects/Internal Attendance Web-app/img25.jpg"
+        "./projects/Internal Attendance Web-app/img4.jpg",
+        "./projects/Internal Attendance Web-app/img7.jpg",
+        "./projects/Internal Attendance Web-app/img10.jpg",
+        "./projects/Internal Attendance Web-app/img13.jpg",
+        "./projects/Internal Attendance Web-app/img16.jpg",
+        "./projects/Internal Attendance Web-app/img19.jpg",
+        "./projects/Internal Attendance Web-app/img22.jpg",
+        "./projects/Internal Attendance Web-app/img25.jpg"
       ]
     },
     {
@@ -100,13 +100,13 @@ const Projects: React.FC = () => {
       tools: ["Figma", "User Research", "Interaction Design", "Prototyping"],
       folder: "Language Learning App",
       images: [
-        "/src/assets/projects/Learning App/iPhone 14 Pro Max - 1.png",
-        "/src/assets/projects/Learning App/iPhone 14 Pro Max - 10.png",
-        "/src/assets/projects/Learning App/iPhone 14 Pro Max - 2.png",
-        "/src/assets/projects/Learning App/iPhone 14 Pro Max - 5.png",
-        "/src/assets/projects/Learning App/iPhone 14 Pro Max - 3.png",
-        "/src/assets/projects/Learning App/iPhone 14 Pro Max - 9.png",
-        "/src/assets/projects/Learning App/iPhone 14 Pro Max - 7.png"
+        "./projects/Learning App/iPhone 14 Pro Max - 1.png",
+        "./projects/Learning App/iPhone 14 Pro Max - 10.png",
+        "./projects/Learning App/iPhone 14 Pro Max - 2.png",
+        "./projects/Learning App/iPhone 14 Pro Max - 5.png",
+        "./projects/Learning App/iPhone 14 Pro Max - 3.png",
+        "./projects/Learning App/iPhone 14 Pro Max - 9.png",
+        "./projects/Learning App/iPhone 14 Pro Max - 7.png"
       ]
     },
     {
@@ -118,13 +118,13 @@ const Projects: React.FC = () => {
       tools: ["Figma", "Mobile App","User Flows"],
       folder: "Entertainment app",
       images: [
-        "/src/assets/projects/Entertainment app/img4.jpg",
-        "/src/assets/projects/Entertainment app/img7.jpg",
-        "/src/assets/projects/Entertainment app/img10.jpg",
-        "/src/assets/projects/Entertainment app/img13.jpg",
-        "/src/assets/projects/Entertainment app/img16.jpg",
-        "/src/assets/projects/Entertainment app/img19.jpg",
-        "/src/assets/projects/Entertainment app/img22.jpg"
+        "./projects/Entertainment app/img4.jpg",
+        "./projects/Entertainment app/img7.jpg",
+        "./projects/Entertainment app/img10.jpg",
+        "./projects/Entertainment app/img13.jpg",
+        "./projects/Entertainment app/img16.jpg",
+        "./projects/Entertainment app/img19.jpg",
+        "./projects/Entertainment app/img22.jpg"
       ]
     },
     {
@@ -136,13 +136,13 @@ const Projects: React.FC = () => {
       tools: ["Figma", "Wireframing", "Technical Constraints","Material UI"],
       folder: "Message Converter",
       images: [
-        "/src/assets/projects/Message Converter/img4.jpg",
-        "/src/assets/projects/Message Converter/img7.jpg",
-        "/src/assets/projects/Message Converter/img10.jpg",
-        "/src/assets/projects/Message Converter/img13.jpg",
-        "/src/assets/projects/Message Converter/img16.jpg",
-        "/src/assets/projects/Message Converter/img19.jpg",
-        "/src/assets/projects/Message Converter/img22.jpg"
+        "./projects/Message Converter/img4.jpg",
+        "./projects/Message Converter/img7.jpg",
+        "./projects/Message Converter/img10.jpg",
+        "./projects/Message Converter/img13.jpg",
+        "./projects/Message Converter/img16.jpg",
+        "./projects/Message Converter/img19.jpg",
+        "./projects/Message Converter/img22.jpg"
       ]
     },
     {
@@ -154,9 +154,9 @@ const Projects: React.FC = () => {
       tools: ["Figma", "Wireframing", "Prototyping"],
       folder: "Charity App",
       images: [
-        "/src/assets/projects/Charity App/img4.jpg",
-        "/src/assets/projects/Charity App/img7.jpg",
-        "/src/assets/projects/Charity App/img10.jpg"
+        "./projects/Charity App/img4.jpg",
+        "./projects/Charity App/img7.jpg",
+        "./projects/Charity App/img10.jpg"
       ]
     },
     
@@ -208,9 +208,9 @@ const Projects: React.FC = () => {
       tools: ["Figma", "Healthcare UX", "Accessibility Design", "User Research"],
       folder: "COPD Management App",
       images: [
-        "/src/assets/projects/Medical App/Android Large - 2.png",
-        "/src/assets/projects/Medical App/Android Large - 3.png",
-        "/src/assets/projects/Medical App/Android Large - 4.png"
+        "./projects/Medical App/Android Large - 2.png",
+        "./projects/Medical App/Android Large - 3.png",
+        "./projects/Medical App/Android Large - 4.png"
       ]
     }
   ];
