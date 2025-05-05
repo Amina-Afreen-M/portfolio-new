@@ -50,8 +50,8 @@ const Projects: React.FC = () => {
         "/src/assets/projects/E-commerce Web Design/8.jpg",
         "/src/assets/projects/E-commerce Web Design/9.jpg",
         "/src/assets/projects/E-commerce Web Design/10.jpg",
-        "/src/assets/projects/E-commerce Web Design/products page.jpg",
-        "/src/assets/projects/E-commerce Web Design/products page-1.jpg"
+        "/src/assets/projects/E-commerce Web Design/Products page.jpg",
+        "/src/assets/projects/E-commerce Web Design/Products page-1.jpg"
       ]
     },
     {
