@@ -57,13 +57,13 @@ const Contact = () => {
       console.log('Service ID:', serviceId);
       console.log('Template ID:', templateId);
       
-      // Send the email directly with parameters instead of using form
+      // Send the email directly with parameters matching the template variables
       const response = await emailjs.send(
         serviceId,
         templateId,
         {
-          from_name: formData.name,
-          reply_to: formData.email,
+          name: formData.name,
+          email: formData.email,
           subject: formData.subject,
           message: formData.message
         },
