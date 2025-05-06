@@ -45,7 +45,7 @@ const CaseStudies: React.FC = () => {
       context: "Legacy financial systems require a seamless transition from MT202 to ISO 20022 standards, yet current workflows lack real-time feedback and intuitive control for message transformation.",
       problem: "The manual conversion and monitoring process creates cognitive load, error-prone workflows, and operational inefficiencies, failing to support user mental models and decision support.",
       solution: "Designed a real-time, rule-based transformation dashboard optimized for rapid comprehension and minimal friction. Applied interaction design principles to surface validation feedback inline, using visual hierarchy and status indicators. Introduced progressive onboarding, customizable widgets, and consistent error prevention affordances with contextual prompts. The dashboard prioritizes information architecture clarity, enabling operations teams to interact confidently with complex data in a scalable system.",
-      image: "/src/assets/projects/Message Converter/img4.jpg"
+      image: "/projects/Message Converter/img4.jpg"
     },
     {
       id: 3,
@@ -53,7 +53,7 @@ const CaseStudies: React.FC = () => {
       context: "Users faced drop-offs and task failures during the shopping journey due to inconsistent UI patterns, inefficient task flows, and limited personalization.",
       problem: "Poor information architecture, redundant sign-up flows, and unscalable product layouts disrupted the shopping user journey, causing low engagement and conversion.",
       solution: "Redesigned core user flows with simplified navigation, personalized recommendations, and streamlined checkout process. Implemented consistent design patterns, improved information hierarchy, and enhanced product discovery features. The redesign resulted in a 35% increase in user engagement and a 22% improvement in conversion rates.",
-      image: "/src/assets/projects/E-commerce Web Design/1.jpg"
+      image: "/projects/E-commerce Web Design/1.jpg"
     }
   ];
 
