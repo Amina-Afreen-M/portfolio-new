@@ -31,43 +31,6 @@ const Projects: React.FC = () => {
 
   // Define projects array first
   const projects: Project[] = [
-    // Case Study Projects
-    {
-      id: 100,
-      title: "AccessNow – Accessible Navigation Web App",
-      category: "casestudy",
-      description: "Inclusive navigation system for people with disabilities, integrating OpenStreetMap, voice search, and accessibility features.",
-      thumbnail: "https://images.unsplash.com/photo-1586449480537-3a22cf98b04c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z29vZ2xlJTIwbWFwfGVufDB8MHwwfHx8MA%3D%3D",
-      tools: ["UX Research", "Accessibility", "OpenStreetMap", "Voice UI"],
-      folder: "AccessNow",
-      images: [
-        "https://images.unsplash.com/photo-1586449480537-3a22cf98b04c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z29vZ2xlJTIwbWFwfGVufDB8MHwwfHx8MA%3D%3D"
-      ]
-    },
-    {
-      id: 101,
-      title: "COPD Care Companion App",
-      category: "casestudy",
-      description: "Mobile-first COPD management app for symptom tracking, medication reminders, and health trend monitoring.",
-      thumbnail: "https://images.unsplash.com/photo-1603539947678-cd3954ed515d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      tools: ["UX Design", "Healthcare", "Mobile App", "Accessibility"],
-      folder: "COPD Care Companion",
-      images: [
-        "https://images.unsplash.com/photo-1603539947678-cd3954ed515d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      ]
-    },
-    {
-      id: 102,
-      title: "OZON – Ecommerce App UX Audit & Redesign",
-      category: "casestudy",
-      description: "Redesigned OZON ecommerce app to improve user engagement and conversion through better UX and streamlined flows.",
-      thumbnail: "/projects/E-commerce Web Design/1.jpg",
-      tools: ["UX Audit", "Ecommerce", "UI Redesign"],
-      folder: "OZON Redesign",
-      images: [
-        "/projects/E-commerce Web Design/1.jpg"
-      ]
-    },
     // UX Projects
     {
       id: 1,
@@ -166,17 +129,20 @@ const Projects: React.FC = () => {
     },
     {
       id: 6,
-      title: "Basic Onboarding",
+      title: "Message Converter Interface",
       category: "ux",
-      description: "A simple template design for mobile onboarding experiences, providing users with a clear path to account creation and logging in.",
-      thumbnail: "https://images.unsplash.com/photo-1689768021353-fa069fe82840?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      tools: ["Figma", "Wireframing"],
-      folder: "Onboarding",
+      description: "A financial message converter interface designed for efficient transformation of financial data formats.",
+      thumbnail: "https://images.pexels.com/photos/4386442/pexels-photo-4386442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      tools: ["Figma", "Wireframing", "Technical Constraints","Material UI"],
+      folder: "Message Converter",
       images: [
-        "./projects/Onboarding/O1.jpg",
-        "./projects/Onboarding/O2.jpg",
-        "./projects/Onboarding/O3.jpg",
-    
+        "./projects/Message Converter/img4.jpg",
+        "./projects/Message Converter/img7.jpg",
+        "./projects/Message Converter/img10.jpg",
+        "./projects/Message Converter/img13.jpg",
+        "./projects/Message Converter/img16.jpg",
+        "./projects/Message Converter/img19.jpg",
+        "./projects/Message Converter/img22.jpg"
       ]
     },
     {
@@ -217,12 +183,12 @@ const Projects: React.FC = () => {
     // Data Projects
     {
       id: 10,
-      title: "Weather Data Analysis",
+      title: "Walmart Sales Analysis",
       category: "data",
-      description: "A beginner-friendly Exploratory Data Analysis (EDA) of historical weather data using Python.",
-      thumbnail: "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      tools: ["Python", "Pandas", "NumPy"],
-      githubLink: "https://github.com/Amina-Afreen-M/Data-Analysis"
+      description: "End-to-End data analysis solution designed to extract critical business insights from Walmart sales data. Identified revenue trends, customer spending patterns, category-wise performance, and branch-level insights to derive actionable business recommendations.",
+      thumbnail: "https://miro.medium.com/v2/resize:fit:4800/format:webp/1*RlI4hzKAC3bVDV6YTU-FrQ.jpeg",
+      tools: ["Python", "Pandas", "NumPy","SqlAlchemy","MySQL"],
+      githubLink: "https://github.com/Amina-Afreen-M/walmart_sales_analysis"
     },
     {
       id: 11,
@@ -235,6 +201,15 @@ const Projects: React.FC = () => {
     },
     {
       id: 12,
+      title: "Weather Data Analysis",
+      category: "data",
+      description: "A beginner-friendly Exploratory Data Analysis (EDA) of historical weather data using Python.",
+      thumbnail: "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      tools: ["Python", "Pandas", "NumPy"],
+      githubLink: "https://github.com/Amina-Afreen-M/Data-Analysis"
+    },
+    {
+      id: 12,
       title: "COPD Patient Management App",
       category: "ux",
       description: "A healthcare application designed specifically for COPD patients to monitor and manage their condition.",
@@ -244,15 +219,7 @@ const Projects: React.FC = () => {
       images: [
         "./projects/Medical App/Android Large - 2.png",
         "./projects/Medical App/Android Large - 3.png",
-        "./projects/Medical App/Android Large - 4.png",
-        "./projects/Medical App/Android Large - 5.png",
-        "./projects/Medical App/Android Large - 6.png",
-        "./projects/Medical App/Android Large - 7.png",
-        "./projects/Medical App/Android Large - 12.png",
-        "./projects/Medical App/Android Large - 15.png",
-        "./projects/Medical App/Android Large - 16.png",
-        "./projects/Medical App/Home Screen.png",
-        "./projects/Medical App/settings.png",
+        "./projects/Medical App/Android Large - 4.png"
       ]
     }
   ];

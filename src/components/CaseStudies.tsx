@@ -36,16 +36,16 @@ const CaseStudies: React.FC = () => {
       title: "AccessNow – Accessible Navigation Web App",
       context: "Individuals with disabilities encounter significant friction navigating public spaces due to the lack of inclusive design and assistive interaction modes in mainstream mapping applications.",
       problem: "Conventional navigation tools neglect inclusive interaction models and omit critical accessibility metadata, impeding independent mobility for users with physical impairments.",
-      solution: "Along with my team,developed an inclusive navigation system integrating OpenStreetMap with assistive features like voice-controlled search and step-by-step auditory guidance.The interface surfaces real-time contextual cards for nearby places, showcasing dynamic content (images, ratings, accessibility indicators) using responsive design principles. Applied accessibility affordances via standardized icons, an onboarding flow to guide new users, and user preference settings (e.g., accessibility filters). The A* algorithm computes optimal accessible paths, and usability testing ensured alignment with accessibility heuristics and real-world behavior.",
+      solution: "Developed an inclusive navigation system integrating OpenStreetMap with assistive features like voice-controlled search and step-by-step auditory guidance. The interface surfaces real-time contextual cards for nearby places, showcasing dynamic content (images, ratings, accessibility indicators) using responsive design principles. Applied accessibility affordances via standardized icons, an onboarding flow to guide new users, and user preference settings (e.g., accessibility filters). The A* algorithm computes optimal accessible paths, and usability testing ensured alignment with accessibility heuristics and real-world behavior.",
       image: "https://images.unsplash.com/photo-1586449480537-3a22cf98b04c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z29vZ2xlJTIwbWFwfGVufDB8MHwwfHx8MA%3D%3D"
     },
     {
       id: 2,
-      title: "COPD Care Companion App",
-      context: "COPD patients require consistent symptom tracking, medication adherence, and lifestyle adjustments. However, existing tools lack personalization, real-time insights, and user-friendly interfaces for chronic disease self-management.",
-      problem: "Patients face cognitive overload from managing multiple medications, symptoms, and clinical visits. The absence of proactive alerts, intuitive interfaces, and integrated data leads to missed interventions and deteriorating health outcomes.",
-      solution: "Along with my team, I designed a mobile-first COPD management app focusing on simplicity, clarity, and accessibility. We analyzed common COPD patient needs through secondary research and aligned our design to support daily symptom tracking, medication reminders, and health trend monitoring. We prioritized a calm and reassuring interface, using large touch targets, voice support, and minimal screens to reduce cognitive load for elderly users. Through iterative prototyping and usability testing, we refined the experience to ensure it was intuitive, supportive, and empowering for long-term self-care.",
-      image: "https://images.unsplash.com/photo-1603539947678-cd3954ed515d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      title: "Financial Message Converter Interface",
+      context: "Legacy financial systems require a seamless transition from MT202 to ISO 20022 standards, yet current workflows lack real-time feedback and intuitive control for message transformation.",
+      problem: "The manual conversion and monitoring process creates cognitive load, error-prone workflows, and operational inefficiencies, failing to support user mental models and decision support.",
+      solution: "Designed a real-time, rule-based transformation dashboard optimized for rapid comprehension and minimal friction. Applied interaction design principles to surface validation feedback inline, using visual hierarchy and status indicators. Introduced progressive onboarding, customizable widgets, and consistent error prevention affordances with contextual prompts. The dashboard prioritizes information architecture clarity, enabling operations teams to interact confidently with complex data in a scalable system.",
+      image: "/projects/Message Converter/img4.jpg"
     },
     {
       id: 3,

@@ -52,20 +52,23 @@ const About: React.FC = () => {
 </motion.p>
 
 <motion.p variants={itemVariants} className="text-xs sm:text-sm md:text-base">
+  Holding an internship experience in UX design and Java development.
+</motion.p>
+<motion.p variants={itemVariants} className="text-xs sm:text-sm md:text-base">
   During my time as a <span className="glow-text-pink font-semibold">UX Design</span> intern at Brainvault Technologies, I tackled real-world product challenges using tools like <span className="glow-text-green font-semibold">Figma</span> and <span className="glow-text-pink font-semibold">Canva</span>, learning to think deeply about users, structure, and clarity.
 </motion.p>
 
 <motion.p variants={itemVariants} className="text-xs sm:text-sm md:text-base">
-  But my curiosity didn't stop at the interface. I've been actively learning about how intelligent systems work behind the scenes — exploring <span className="glow-text-green font-semibold">data analysis</span>, <span className="glow-text-pink font-semibold">machine learning models</span>, <span className="glow-text-green font-semibold">Java</span>, and how <span className="glow-text-green font-semibold">AI</span> can enhance user experiences.
+  Through my projects, I’ve also explored <span className="glow-text-green font-semibold">data analysis</span> and <span className="glow-text-pink font-semibold">machine learning </span> ,giving me a well-rounded foundation in both design and development.
 </motion.p>
 
 <motion.p variants={itemVariants} className="text-xs sm:text-sm md:text-base">
   
-    I'm excited to grow in roles where <span className="glow-text-green font-semibold">data</span> meets<span className="glow-text-pink font-semibold"> design</span>  — and where I can help shape technology that truly understands and supports people.
+    I'm excited to grow in roles where <span className="glow-text-green font-semibold">data</span> meets<span className="glow-text-pink font-semibold"> design</span>and contribute to projects that make technology smarter and more human-centered.
 </motion.p>
 <motion.p variants={itemVariants} className="text-xs sm:text-sm md:text-base">
   <span style={{  fontStyle: 'italic' }}>
-  Let's team up and build something that feels just right — smart, seamless, and truly user-first.
+  Let's team up and build something that feels just right.
   </span>
 </motion.p>
 

@@ -8,7 +8,7 @@ import type { Engine } from 'tsparticles-engine';
 
 const Hero: React.FC = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const roles = ["Visual Storyteller", "A Developer in Progress","Problem Solver", "Exploring the World of AI"];
+  const roles = ["Building with Code", "Turning Data into Insights","Designing with Users in Mind", "Growing as a Software Engineer"];
 
   const particlesInit = async (engine: Engine) => {
     await loadSlim(engine);
