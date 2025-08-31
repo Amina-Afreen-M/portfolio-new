@@ -209,7 +209,7 @@ const Projects: React.FC = () => {
       githubLink: "https://github.com/Amina-Afreen-M/Data-Analysis"
     },
     {
-      id: 12,
+      id: 13,
       title: "COPD Patient Management App",
       category: "ux",
       description: "A healthcare application designed specifically for COPD patients to monitor and manage their condition.",
@@ -221,7 +221,17 @@ const Projects: React.FC = () => {
         "./projects/Medical App/Android Large - 3.png",
         "./projects/Medical App/Android Large - 4.png"
       ]
+    },
+    {
+      id: 14,
+      title: "Bank risk and portfolio analysis",
+      category: "data",
+      description: "A comprehensive banking risk analysis combining Python data science with Power BI visualization. This project analyzes customer portfolios, identifies liquidity vulnerabilities, and provides actionable risk management insights through interactive dashboards and stress testing scenarios.",
+      thumbnail: "https://plus.unsplash.com/premium_photo-1681487769650-a0c3fbaed85a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmluYW5jZXxlbnwwfHwwfHx8MA%3D%3D",
+      tools: ["Python", "Pandas", "NumPy","Power BI","Matplotlib","Seaborn"],
+      githubLink: "https://github.com/Amina-Afreen-M/Banking-Risk-and-Portfolio-Analytics"
     }
+
   ];
 
   // Define filteredProjects before any useEffect hooks that use it
